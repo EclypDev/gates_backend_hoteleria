@@ -128,19 +128,25 @@ void reconnect() {
 void setup() {
     Serial.begin(115200);
     
-    // 1. Obtener la dirección MAC e inicializar tópicos dinámicos
-    macAddress = WiFi.macAddress();
-    macAddress.toUpperCase(); // Estandarizar a mayúsculas
+    // 1. Levantar Conexión WiFi primero
+    setup_wifi();
     
+    // 2. Obtener la dirección MAC DESPUÉS de inicializar WiFi
+    macAddress = WiFi.macAddress();
+    macAddress.replace(":", "");
+    macAddress.toUpperCase();
+    
+    // 3. Inicializar tópicos dinámicos con la MAC real
     snprintf(cmdTopic, sizeof(cmdTopic), "galaxypos/hardware/cmd/%s", macAddress.c_str());
     snprintf(stateTopic, sizeof(stateTopic), "galaxypos/hardware/state/%s", macAddress.c_str());
 
     Serial.printf("=== GALAXYPOS INITIALIZED ===\n");
     Serial.printf("DEVICE MAC ID: %s\n", macAddress.c_str());
+    Serial.printf("CMD TOPIC: %s\n", cmdTopic);
+    Serial.printf("STATE TOPIC: %s\n", stateTopic);
     Serial.printf("=============================\n");
 
-    // 2. Levantar Conexiones
-    setup_wifi();
+    // 4. Configurar MQTT
     mqttClient.setServer(mqtt_server, mqtt_port);
     mqttClient.setCallback(callback);
 }
