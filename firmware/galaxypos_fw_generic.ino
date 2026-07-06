@@ -7,7 +7,7 @@
 // ==========================================
 const char* ssid     = "TU_WIFI_SSID";         // <-- Cambiar por la red del hotel/motel
 const char* password = "TU_WIFI_PASSWORD";     // <-- Cambiar por la contraseña de la red
-const char* mqtt_server = "hoteleria.com.co";   // Tu dominio unificado (Nginx/Mosquitto)
+const char* mqtt_server = "147.189.170.94";
 const int mqtt_port   = 1883;                  // Puerto expuesto de Mosquitto
 
 // Variables Globales
