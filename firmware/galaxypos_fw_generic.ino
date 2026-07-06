@@ -98,8 +98,15 @@ void reconnect() {
     while (!mqttClient.connected()) {
         Serial.print("Intentando conexión MQTT...");
         
+        // Configurar LWT (Last Will and Testament) - se publica cuando el dispositivo se desconecta
+        StaticJsonDocument<128> willDoc;
+        willDoc["macAddress"] = macAddress;
+        willDoc["status"] = "offline";
+        char willPayload[128];
+        serializeJson(willDoc, willPayload);
+        
         // Usar la dirección MAC como Client ID único en el broker MQTT
-        if (mqttClient.connect(macAddress.c_str())) {
+        if (mqttClient.connect(macAddress.c_str(), "galaxypos/hardware/announcement", 1, true, willPayload)) {
             Serial.println("Conectado al Broker Mosquitto");
             
             // Suscribirse al tópico de comandos de este ESP32 específico usando su MAC
