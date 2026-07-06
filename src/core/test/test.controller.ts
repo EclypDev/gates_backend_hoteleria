@@ -9,7 +9,7 @@ export class TestController {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GalaxyPos - Test Panel</title>
+<title>🏨 Moteles - Test Panel</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
@@ -36,7 +36,7 @@ export class TestController {
 </head>
 <body>
 <div class="container">
-  <h1>GalaxyPos Test Panel</h1>
+  <h1>🏨 Moteles - Test Panel</h1>
   <p class="subtitle">Control de dispositivos IoT</p>
 
   <label>Dispositivo</label>
