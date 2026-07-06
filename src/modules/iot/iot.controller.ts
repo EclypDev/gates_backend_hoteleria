@@ -31,7 +31,11 @@ export class IotController {
   async executeCommand(
     @Param('mac') mac: string,
     @Body() dto: DeviceCommandDto,
-  ): Promise<void> {
+  ): Promise<{ success: boolean; message: string }> {
     await this.iotService.executeCommand(mac, dto);
+    return {
+      success: true,
+      message: `Comando enviado: pin ${dto.pin} -> ${dto.action}`,
+    };
   }
 }
