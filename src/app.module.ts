@@ -10,6 +10,7 @@ import { UsersModule } from './core/users/users.module';
 import { AuthModule } from './core/auth/auth.module';
 import { IotModule } from './modules/iot/iot.module';
 import { HabitacionesModule } from './modules/habitaciones/habitaciones.module';
+import { TestModule } from './core/test/test.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { HabitacionesModule } from './modules/habitaciones/habitaciones.module';
     AuthModule,
     IotModule,
     HabitacionesModule,
+    TestModule,
   ],
   controllers: [AppController],
   providers: [AppService],
