@@ -26,6 +26,10 @@ export class RedisService implements IRedisService, OnModuleDestroy {
     await this.redis.del(key);
   }
 
+  async expire(key: string, ttlSeconds: number): Promise<void> {
+    await this.redis.expire(key, ttlSeconds);
+  }
+
   async hset(key: string, field: string, value: string): Promise<void> {
     await this.redis.hset(key, field, value);
   }
