@@ -11,6 +11,7 @@ import { AuthModule } from './core/auth/auth.module';
 import { IotModule } from './modules/iot/iot.module';
 import { HabitacionesModule } from './modules/habitaciones/habitaciones.module';
 import { TestModule } from './core/test/test.module';
+import { RoomsModule } from './modules/rooms/rooms.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { TestModule } from './core/test/test.module';
     IotModule,
     HabitacionesModule,
     TestModule,
+    RoomsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
