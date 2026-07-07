@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Business } from './entities/business.entity';
+import { Business } from '../entities/business.entity';
 import type { IBusinessService, CreateBusinessDto, UpdateBusinessDto } from '../interfaces/room-service.interface';
 import { NotFoundException } from '@nestjs/common';
 

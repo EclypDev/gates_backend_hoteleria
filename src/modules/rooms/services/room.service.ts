@@ -1,8 +1,8 @@
 import { Injectable, Inject, NotFoundException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Room } from './entities/room.entity';
-import { Device } from '../iot/entities/device.entity';
+import { Room } from '../entities/room.entity';
+import { Device } from '../../iot/entities/device.entity';
 import type { IRoomService, CreateRoomDto, UpdateRoomDto } from '../interfaces/room-service.interface';
 import type { IMqttService } from '../../../core/interfaces';
 import { CORE_TOKENS } from '../../../core/tokens';
