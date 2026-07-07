@@ -1,0 +1,194 @@
+.card {
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid #334155;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card:hover {
+  border-color: #34d399;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(52, 211, 153, 0.15);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.roomInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.roomNumber {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.floor {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.active {
+  background: #064e3b;
+  color: #34d399;
+}
+
+.inactive {
+  background: #450a0a;
+  color: #fca5a5;
+}
+
+.business {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #0f172a;
+  border-radius: 8px;
+}
+
+.businessLabel {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.businessName {
+  font-size: 0.85rem;
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.deviceSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #0f172a;
+  border-radius: 8px;
+}
+
+.deviceInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.deviceLabel,
+.pinLabel {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.deviceAlias {
+  font-size: 0.85rem;
+  color: #e2e8f0;
+  font-family: monospace;
+}
+
+.deviceStatus {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.online {
+  background: #064e3b;
+  color: #34d399;
+}
+
+.offline {
+  background: #450a0a;
+  color: #fca5a5;
+}
+
+.pinInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pinValue {
+  font-size: 0.85rem;
+  color: #7dd3fc;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.noDevice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.btnOpen,
+.btnClose {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnOpen {
+  background: #059669;
+  color: white;
+}
+
+.btnOpen:hover:not(:disabled) {
+  background: #047857;
+  transform: scale(1.02);
+}
+
+.btnClose {
+  background: #dc2626;
+  color: white;
+}
+
+.btnClose:hover:not(:disabled) {
+  background: #b91c1c;
+  transform: scale(1.02);
+}
+
+.btnOpen:disabled,
+.btnClose:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}

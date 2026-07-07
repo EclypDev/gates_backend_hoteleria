@@ -1,0 +1,53 @@
+.app {
+  min-height: 100vh;
+  background: #0f172a;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navBrand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #34d399;
+}
+
+.navLinks {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.navLink {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navLink:hover {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.navLink.active {
+  background: #059669;
+  color: white;
+}
+
+.main {
+  min-height: calc(100vh - 65px);
+}
