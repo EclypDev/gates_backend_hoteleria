@@ -13,7 +13,6 @@ interface DeviceAnnouncement {
 @Injectable()
 export class DeviceAnnouncementListener implements OnModuleInit {
   private readonly logger = new Logger(DeviceAnnouncementListener.name);
-  private heartbeatInterval: NodeJS.Timeout;
 
   constructor(
     @InjectRepository(Device)
@@ -35,7 +34,7 @@ export class DeviceAnnouncementListener implements OnModuleInit {
     });
 
     // Iniciar verificación de heartbeat cada 30 segundos
-    this.heartbeatInterval = setInterval(() => {
+    setInterval(() => {
       void this.checkHeartbeat();
     }, 30000);
 
