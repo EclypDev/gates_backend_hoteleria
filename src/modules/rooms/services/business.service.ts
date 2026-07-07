@@ -14,7 +14,7 @@ export class BusinessService implements IBusinessService {
 
   async findAll(): Promise<Business[]> {
     return this.businessRepository.find({
-      relations: ['rooms'],
+      relations: { rooms: true },
       order: { createdAt: 'DESC' },
     });
   }
@@ -22,7 +22,7 @@ export class BusinessService implements IBusinessService {
   async findById(id: string): Promise<Business | null> {
     return this.businessRepository.findOne({
       where: { id },
-      relations: ['rooms', 'rooms.device'],
+      relations: { rooms: { device: true } },
     });
   }
 

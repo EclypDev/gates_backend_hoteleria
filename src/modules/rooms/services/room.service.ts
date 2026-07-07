@@ -22,7 +22,7 @@ export class RoomService implements IRoomService {
 
   async findAll(): Promise<Room[]> {
     return this.roomRepository.find({
-      relations: ['business', 'device'],
+      relations: { business: true, device: true },
       order: { roomNumber: 'ASC' },
     });
   }
@@ -30,14 +30,14 @@ export class RoomService implements IRoomService {
   async findById(id: string): Promise<Room | null> {
     return this.roomRepository.findOne({
       where: { id },
-      relations: ['business', 'device'],
+      relations: { business: true, device: true },
     });
   }
 
   async findByBusinessId(businessId: string): Promise<Room[]> {
     return this.roomRepository.find({
       where: { businessId },
-      relations: ['business', 'device'],
+      relations: { business: true, device: true },
       order: { roomNumber: 'ASC' },
     });
   }
