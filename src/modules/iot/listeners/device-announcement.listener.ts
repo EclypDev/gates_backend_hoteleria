@@ -1,6 +1,6 @@
 import { Injectable, Inject, OnModuleInit, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, LessThan } from 'typeorm';
 import { Device } from '../entities/device.entity';
 import type { IMqttService } from '../../../core/interfaces';
 import { CORE_TOKENS } from '../../../core/tokens';
@@ -13,6 +13,7 @@ interface DeviceAnnouncement {
 @Injectable()
 export class DeviceAnnouncementListener implements OnModuleInit {
   private readonly logger = new Logger(DeviceAnnouncementListener.name);
+  private heartbeatInterval: NodeJS.Timeout;
 
   constructor(
     @InjectRepository(Device)
@@ -32,6 +33,13 @@ export class DeviceAnnouncementListener implements OnModuleInit {
         await this.handleAnnouncement(payload as DeviceAnnouncement);
       }
     });
+
+    // Iniciar verificación de heartbeat cada 30 segundos
+    this.heartbeatInterval = setInterval(() => {
+      void this.checkHeartbeat();
+    }, 30000);
+
+    this.logger.log('Heartbeat checker started (30s interval)');
   }
 
   private async handleAnnouncement(announcement: DeviceAnnouncement): Promise<void> {
@@ -44,6 +52,7 @@ export class DeviceAnnouncementListener implements OnModuleInit {
 
       if (device) {
         device.isOnline = announcement.status === 'online';
+        device.updatedAt = new Date();
         await this.deviceRepository.save(device);
         this.logger.log(`Device ${macAddress} updated: ${announcement.status}`);
       } else {
@@ -57,6 +66,28 @@ export class DeviceAnnouncementListener implements OnModuleInit {
       }
     } catch (error) {
       this.logger.error('Failed to handle device announcement', error);
+    }
+  }
+
+  private async checkHeartbeat(): Promise<void> {
+    try {
+      const threshold = new Date(Date.now() - 60000); // 60 segundos
+      
+      // Buscar dispositivos online que no han actualizado en 60 segundos
+      const staleDevices = await this.deviceRepository.find({
+        where: {
+          isOnline: true,
+          updatedAt: LessThan(threshold),
+        },
+      });
+
+      for (const device of staleDevices) {
+        device.isOnline = false;
+        await this.deviceRepository.save(device);
+        this.logger.warn(`Device ${device.macAddress} marked offline (no heartbeat)`);
+      }
+    } catch (error) {
+      this.logger.error('Failed to check heartbeat', error);
     }
   }
 }
