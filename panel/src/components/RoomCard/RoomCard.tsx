@@ -4,10 +4,9 @@ import styles from './RoomCard.module.css';
 
 interface Props {
   room: IRoom;
-  onRefresh: () => void;
 }
 
-export default function RoomCard({ room, onRefresh }: Props) {
+export default function RoomCard({ room }: Props) {
   const handleOpen = async () => {
     try {
       await roomApi.openDoor(room.id);

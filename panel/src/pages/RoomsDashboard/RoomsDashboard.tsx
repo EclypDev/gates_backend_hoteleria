@@ -142,7 +142,7 @@ export default function RoomsDashboard() {
           <div className={styles.grid}>
             {rooms.map((room) => (
               <div key={room.id} className={styles.cardWrapper}>
-                <RoomCard room={room} onRefresh={loadData} />
+                <RoomCard room={room} />
                 <div className={styles.cardActions}>
                   {!room.device && availableDevices.length > 0 && (
                     <button
